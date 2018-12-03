@@ -9,6 +9,13 @@ addons:
         - build-essential
         - git
         - curl
+        - libboost-dev
+        - gcc
+        - autoconf
+        - bzip2
+        - zlib1g
+        - libsparsehash-dev
+        - cmake
 
 cache:
     timeout: 1000
