@@ -46,6 +46,21 @@ install: |
     conda install --quiet --yes --channel bioconda snakemake=5.3.0
     snakemake --use-conda --create-envs-only
     conda clean --all --yes
+    mkdir -p src/
+    mkdir -p bin/
+    pushd src/ || exit
+    pushd sdsl-lite/ && \
+    sudo ./install.sh /usr/local/ && \
+    popd || exit
+    pushd biobloom/ || exit
+    git submodule update --init
+    git checkout 0a42916922d42611a087d4df871e424a8907896e
+    ./autogen.sh
+    ./configure --prefix=/usr/local/
+    make -j 2
+    sudo make install
+    popd || exit
+    popd || exit
 
 script: |
     echo $PATH
