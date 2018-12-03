@@ -46,6 +46,7 @@ before_install: |
 
 
 install: |
+    git lfs install
     git lfs pull
     export PATH="$HOME"/miniconda3_"$TRAVIS_OS_NAME"/bin:"$PATH"
     echo "$PATH"
