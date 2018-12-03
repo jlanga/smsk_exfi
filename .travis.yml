@@ -18,6 +18,7 @@ addons:
         - cmake
 
 cache:
+    apt: true
     timeout: 1000
     directories:
         - "$HOME/miniconda3_$TRAVIS_OS_NAME"
