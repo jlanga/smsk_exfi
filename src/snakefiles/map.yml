@@ -1,9 +1,0 @@
-# Environment file for read mapping
----
-channels:
-    - conda-forge
-    - bioconda
-    - defaults
-dependencies:
-    - bwa=0.7.12
-    - samtools=1.3.1
