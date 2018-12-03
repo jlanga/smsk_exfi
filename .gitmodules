@@ -1,3 +1,9 @@
 [submodule "src/snakehooks"]
 	path = src/snakehooks
 	url = https://github.com/jlanga/snakehooks
+[submodule "src/sdsl-lite"]
+	path = src/sdsl-lite
+	url = https://github.com/simongog/sdsl-lite
+[submodule "src/biobloom"]
+	path = src/biobloom
+	url = https://github.com/bcgsc/biobloom
