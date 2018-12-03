@@ -1,65 +1,48 @@
-rule raw_download_tarball:
-    """Download tarball with reads and reference"""
-    output:
-        tarball = RAW + "snakemake-tutorial-data.tar.gz"
-    threads:
-        1
-    params:
-        url = samples["urls"]["tarball"]
-    log:
-        RAW + "download_tarball.log"
-    benchmark:
-        RAW + "download_tarball.bmk"
-    shell:
-        "wget --continue --output-document {output.tarball} {params.url} "
-        "2> {log} 1>&2"
+def get_reads(wildcards):
+    sample = wildcards.sample
+    forward, reverse = (
+        samples
+        [(samples["sample"] == sample)]
+        [["forward", "reverse"]]
+        .values
+        .tolist()[0]
+    )
+    return forward, reverse
 
 
-rule raw_extract_genome:
-    """Extract from the tarball just the reference"""
+rule raw_link_pe_sample:
     input:
-        tarball = RAW + "snakemake-tutorial-data.tar.gz"
+        get_reads
     output:
-        touch(RAW + "genome.fa")
+        forward = RAW + "{sample}_1.fq.gz",
+        reverse = RAW + "{sample}_2.fq.gz"
     log:
-        RAW + "extract_genome.log"
+        RAW + "link_dna_pe_{sample}.log"
     benchmark:
-        RAW + "extract_genome.bmk"
+        RAW + "link_dna_pe_{sample}.json"
     shell:
-        """
-        tar \
-            --extract \
-            --verbose \
-            --file {input.tarball} \
-            --directory {RAW} \
-            --strip 1 \
-            data/genome.fa \
-        2> {log} 1>&2
-        """
+        "ln "
+            "--symbolic "
+            "$(readlink --canonicalize {input[0]}) "
+            "{output.forward} 2> {log}; "
+        "ln "
+            "--symbolic "
+            "$(readlink --canonicalize {input[0]}) "
+            "{output.reverse} 2>> {log}"
 
 
-rule raw_extract_samples:
-    """Extract from the tarball the fastq files"""
+
+rule raw_link_assembly:
     input:
-        tarball = RAW + "snakemake-tutorial-data.tar.gz"
+        fasta = features["assembly"]
     output:
-        a = touch(RAW + "samples/A.fastq"),
-        b = touch(RAW + "samples/B.fastq")
-    params:
-        a_path = "data/samples/A.fastq",
-        b_path = "data/samples/B.fastq"
+        fasta = RAW + "assembly.fa"
     log:
-        RAW + "extract_genome.log"
+        RAW + "link_assembly.log"
     benchmark:
-        RAW + "extract_genome.bmk"
+        RAW + "link_assembly.json"
     shell:
-        """
-        tar \
-            --extract \
-            --verbose \
-            --file {input.tarball} \
-            --directory {RAW} \
-            --strip 1 \
-            {params.a_path} {params.b_path} \
-        2> {log} 1>&2
-        """
+        "ln "
+            "--symbolic "
+            "$(readlink --canonicalize {input.fasta}) "
+            "{output.fasta} 2> {log}"

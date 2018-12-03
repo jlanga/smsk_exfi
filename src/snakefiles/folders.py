@@ -4,5 +4,5 @@ Folder variables
 
 RAW = "results/raw/"
 MAP = "results/map/"
-CALL = "results/call/"
-REPORT_CALL = "reports/call/"
+QC = "results/qc/"
+EXFI = "results/exfi/"

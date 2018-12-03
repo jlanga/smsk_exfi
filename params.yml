@@ -1,3 +1,26 @@
-# Configuration file with the execution parameters
+# Config file with pipeline parameters
 ---
-max_threads: 12
+
+trimmomatic:
+    extra: >
+        AVGQUAL:3
+        MINLEN:31
+        LEADING:19
+        TRAILING:19
+        MINLEN:31
+        SLIDINGWINDOW:4:5
+        LEADING:5
+        TRAILING:5
+        MINLEN:25
+        TOPHRED33
+
+
+exfi:
+    kmer: "27"
+    levels: "1"
+    size: "500M"
+    max_fp_bases: "5"
+    max_overlap: "10"
+    max_gap_size: "10"
+    gfa1_to_exons_extra: "--soft-mask-overlaps"
+    gfa1_to_gapped_transcript_extra: "--soft-mask-overlaps"
