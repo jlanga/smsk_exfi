@@ -3,15 +3,10 @@
 
 trimmomatic:
     extra: >
-        AVGQUAL:3
-        MINLEN:31
-        LEADING:19
-        TRAILING:19
-        MINLEN:31
-        SLIDINGWINDOW:4:5
-        LEADING:5
-        TRAILING:5
-        MINLEN:25
+        LEADING:10
+        TRAILING:10
+        AVGQUAL:10
+        MINLEN:27
         TOPHRED33
 
 
