@@ -3,3 +3,9 @@ data/reads/dna1_2.fq.gz filter=lfs diff=lfs merge=lfs -text
 data/reads/dna2_1.fq.gz filter=lfs diff=lfs merge=lfs -text
 data/reads/dna2_2.fq.gz filter=lfs diff=lfs merge=lfs -text
 data/assembly/transcriptome.fa filter=lfs diff=lfs merge=lfs -text
+data/adapters/TruSeq3-PE-2.fa filter=lfs diff=lfs merge=lfs -text
+data/adapters/TruSeq3-PE.fa filter=lfs diff=lfs merge=lfs -text
+data/adapters/TruSeq3-SE.fa filter=lfs diff=lfs merge=lfs -text
+data/adapters/NexteraPE-PE.fa filter=lfs diff=lfs merge=lfs -text
+data/adapters/TruSeq2-PE.fa filter=lfs diff=lfs merge=lfs -text
+data/adapters/TruSeq2-SE.fa filter=lfs diff=lfs merge=lfs -text
