@@ -12,4 +12,4 @@ dependencies:
     - biopython=1.69=np113py36_0
     - pip
     - pip:
-          - "https://github.com/jlanga/exfi/archive/v1.4.12.tar.gz"
+          - "https://github.com/jlanga/exfi/archive/v1.4.13.tar.gz"
